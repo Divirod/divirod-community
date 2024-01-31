@@ -298,6 +298,10 @@ end_date = "2023-01-31"
 
 # COMMAND ----------
 
+selected_instruments_str
+
+# COMMAND ----------
+
 instrument_info = spark.sql("""SELECT * FROM divirod_delta_lake.water_level.instrument_information""")
 recent_data = spark.sql(f"""SELECT * FROM divirod_delta_lake.water_level.water_level
                             WHERE instrument_id IN{selected_instruments_str}

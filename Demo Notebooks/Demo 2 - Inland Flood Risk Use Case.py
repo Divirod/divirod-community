@@ -309,7 +309,7 @@ river_data_df.head()
 
 # COMMAND ----------
 
-river_data_df_plot.head()
+river_data_df_plot = river_data_df.copy()
 
 # COMMAND ----------
 
@@ -342,7 +342,7 @@ def create_timeseries_plot():
         legend=dict(orientation='v', x=0.60, y=1.05),
     )
 
-    with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+    with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
             base64_image = base64.b64encode(image_file.read()).decode("utf-8")
         
     data_url = f"data:image/png;base64,{base64_image}"
@@ -424,7 +424,7 @@ def create_map():
             }
         ])
 
-    with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+    with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode("utf-8")
 
     data_url = f"data:image/png;base64,{base64_image}"

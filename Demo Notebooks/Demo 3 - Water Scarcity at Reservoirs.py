@@ -30,10 +30,6 @@ import base64
 
 # COMMAND ----------
 
-# let's modify this
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC # Define parameters for data load
 # MAGIC
@@ -115,6 +111,7 @@ name_0 = LOCATION_NAMES[0]
 water_df_0 = water_df.query(f'instrument_id == {INSTRUMENT_IDS[0]}')
 name_1 = LOCATION_NAMES[1]
 water_df_1 = water_df.query(f'instrument_id == {INSTRUMENT_IDS[1]}')
+water_df_1 = water_df_1.query('height_native<=1000')
 
 # COMMAND ----------
 
@@ -175,7 +172,7 @@ def create_res_plt(water_level_df, location_name):
             )
         )
 
-        with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+        with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
             base64_image = base64.b64encode(image_file.read()).decode("utf-8")
         
         data_url = f"data:image/png;base64,{base64_image}"

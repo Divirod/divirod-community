@@ -1,8 +1,8 @@
 # Databricks notebook source
-# !pip install plotly-geo==1.0.0
-# !pip install geopandas==0.8.1
-# !pip install pyshp==1.2.10
-# !pip install shapely==1.6.3
+!pip install plotly-geo==1.0.0
+!pip install geopandas==0.8.1
+!pip install pyshp==1.2.10
+!pip install shapely==1.6.3
 
 # COMMAND ----------
 
@@ -62,7 +62,7 @@ fl_counties_fips = {"type":"FeatureCollection","features":[{"type":"Feature","pr
 counties_gpd = gpd.GeoDataFrame(fl_counties_fips['features'])
 property_df = counties_gpd['properties'].apply(pd.Series)
 counties_gpd = pd.concat([counties_gpd.drop("properties", axis=1), property_df], axis=1)
-gpd_data = pd.read_csv('/dbfs/FileStore/industry_demo/florida_county_data.csv')
+gpd_data = pd.read_csv('/Volumes/divirod_delta_lake/water_level/demo-data/florida_county_data.csv')
 gpd_data = gpd_data.rename({"Row Labels": "NAME"}, axis=1)
 gpd_data = gpd_data.rename(columns=lambda x: x.lstrip())
 gpd_data["NAME"] = gpd_data["NAME"].str.split(",").str[0]
@@ -232,7 +232,7 @@ def create_florida_map():
         height=700
     )
 
-    with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+    with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode("utf-8")
     
     data_url = f"data:image/png;base64,{base64_image}"
@@ -259,7 +259,7 @@ def create_florida_map():
 # COMMAND ----------
 
 ### COAL & RESERVOIR EXAMPLE SET UP CODE
-coal_plants = pd.read_csv('/dbfs/FileStore/industry_demo/coal_plants_all_states.csv')
+coal_plants = pd.read_csv('/Volumes/divirod_delta_lake/water_level/demo-data/coal_plants_all_states.csv')
 coal_plant_data = coal_plants[["Plant name", "Subnational unit (province, state)", "Capacity (MW)", "Parent", "Remaining plant lifetime (years)", "Latitude", "Longitude"]]
 
 # get reservoir instrument ids
@@ -364,7 +364,7 @@ def create_all_coal_map():
         height=700
     )
 
-    with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+    with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode("utf-8")
     
     data_url = f"data:image/png;base64,{base64_image}"
@@ -438,7 +438,7 @@ def create_wy_map():
         height=700
     )
 
-    with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+    with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode("utf-8")
     
     data_url = f"data:image/png;base64,{base64_image}"
@@ -506,7 +506,7 @@ def create_res_plt():
             )
         )
 
-        with open("/dbfs/FileStore/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+        with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
             base64_image = base64.b64encode(image_file.read()).decode("utf-8")
         
         data_url = f"data:image/png;base64,{base64_image}"
