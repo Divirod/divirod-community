@@ -121,7 +121,7 @@ verde_project_gauge_data_pd = verde_project_gauge_data.toPandas()
 
 # plot water level data at location of interest
 verde_gauge_fig = px.line(verde_project_gauge_data_pd, x='time', y='height_native', title='Water level at Verde River Gauge', color_discrete_sequence=['#3d5e8e'])
-with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+with open("/Volumes/divirod/metainformation/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
             base64_image = base64.b64encode(image_file.read()).decode("utf-8")
         
 data_url = f"data:image/png;base64,{base64_image}"
@@ -195,7 +195,7 @@ def identify_change_point(df: pd.DataFrame):
 
     fig.update_layout(title="Height Time Series with Change Point. (Simple example - no seasonality)", xaxis_title="Time", yaxis_title="Height")
 
-    with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+    with open("/Volumes/divirod/metainformation/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
             base64_image = base64.b64encode(image_file.read()).decode("utf-8")
         
     data_url = f"data:image/png;base64,{base64_image}"
@@ -322,8 +322,8 @@ display(us_provider_list)
 # COMMAND ----------
 
 # read in & format data from DBFS
-h3_short = pd.read_csv('/Volumes/divirod_delta_lake/water_level/demo-data/h3_short.csv')
-major_us_data_centers = pd.read_csv('/Volumes/divirod_delta_lake/water_level/demo-data/us_data_centers.csv')
+h3_short = pd.read_csv('/Volumes/divirod/metainformation/demo-data/h3_short.csv')
+major_us_data_centers = pd.read_csv('/Volumes/divirod/metainformation/demo-data/us_data_centers.csv')
 
 major_us_data_centers = major_us_data_centers[major_us_data_centers['Latitude']!='-']
 major_us_data_centers['Latitude'] = major_us_data_centers['Latitude'].astype(float)
@@ -863,7 +863,7 @@ def create_res_plt(water_level_df: pd.DataFrame, location_name: str):
             )
         )
 
-        with open("/Volumes/divirod_delta_lake/water_level/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
+        with open("/Volumes/divirod/metainformation/demo-data/divirod_grayscale_watermark.png", "rb") as image_file:
             base64_image = base64.b64encode(image_file.read()).decode("utf-8")
         
         data_url = f"data:image/png;base64,{base64_image}"
