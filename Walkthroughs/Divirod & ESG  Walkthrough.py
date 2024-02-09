@@ -47,7 +47,7 @@ import base64
 verde_river_locations = spark.sql(
     """
     SELECT * 
-    FROM divirod_delta_lake.water_level.instrument_information
+    FROM divirod.metainformation..instrument_information
     WHERE name LIKE '%VERDE RIVER%'
     """
 )
@@ -110,7 +110,7 @@ verde_map
 verde_project_gauge_data = spark.sql(
     """
     SELECT *
-    FROM divirod_delta_lake.water_level.water_level
+    FROM divirod.measurements.water_level
     WHERE instrument_id = 5067
     ORDER BY time
     """
@@ -266,7 +266,7 @@ identify_change_point(verde_project_gauge_data_pd)
 us_provider_list = spark.sql(
     """
     SELECT DISTINCT(provider_name)
-    FROM divirod_delta_lake.water_level.instrument_information
+    FROM divirod.metainformation.instrument_information
     WHERE country_code = 'USA'
     """
 )
@@ -729,7 +729,7 @@ major_us_data_centers
 us_instruments = spark.sql(
     """
     SELECT *
-    FROM divirod_delta_lake.water_level.instrument_information
+    FROM divirod.metainformation.instrument_information
     WHERE country_code = 'USA'
     """
 )
@@ -808,7 +808,7 @@ nearest_gauge_id, nearest_gauge_name
 nearest_gauge_data = spark.sql(
     f"""
     SELECT *
-    FROM divirod_delta_lake.water_level.water_level
+    FROM divirod.measurements.water_level
     WHERE instrument_id = {nearest_gauge_id}
     ORDER BY time
     """
